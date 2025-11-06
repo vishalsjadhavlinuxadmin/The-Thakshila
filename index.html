@@ -10,7 +10,7 @@
   <style>
     :root { --primary: #1e3a8a; --accent: #f59e0b; --bg: #f8fafc; --white: #ffffff; --text: #1e293b; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Noto Sans Devanagari', sans-serif; background: linear-gradient(135deg, var(--bg) 0%, #e2e8f0 100%); color: var(--text); line-height: 1.6; }
+    body { font-family: 'Noto Sans Devanagari', sans-serif; background: linear-gradient(135deg, var(--bg) 0%, #e2e8f0 100%); color: var(--text); line-height: 1.6; transition: opacity .4s; opacity:0; }
     header { background: var(--white); padding: 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 100; }
     nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
     .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); } .logo i { color: var(--accent); margin-right: 0.5rem; }
@@ -59,8 +59,8 @@
       <h2><i class="fas fa-comments"></i> AI सोबत बोलूया</h2>
       <div class="input-group">
         <input id="userInput" type="text" placeholder="काही विचारा... (उदा: NEET टिप्स किंवा डोकेदुखी उपाय)">
-        <button onclick="askAI()"><i class="fas fa-paper-plane"></i> पाठवा</button>
-        <button class="mic" onclick="startVoice()"><i class="fas fa-microphone"></i> बोलून सांगा</button>
+        <button id="askBtn"><i class="fas fa-paper-plane"></i> पाठवा</button>
+        <button class="mic" id="voiceBtn"><i class="fas fa-microphone"></i> बोलून सांगा</button>
       </div>
       <div id="response">नमस्कार! काय मदत हवी? (AI तयार आहे...)</div>
     </section>
@@ -90,81 +90,58 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 टक्षशिला. सर्व हक्क राखीव. | <a href="mailto:info@takshila.com" style="color: #fbbf24;">संपर्क: info@takshila.com</a> | <i class="fab fa-whatsapp"></i> 9876543210</p>
+    <p>&copy; 2025 टक्षशिला. सर्व हक्क राखीव. | <a href="mailto:info@takshila.com" style="color: #fbbf24;">संपर्क: info@takshila.com</a></p>
   </footer>
 
   <script>
-    const BHASHINI_KEY = 'YOUR_BHASHINI_KEY'; // Replace after registration
-
-    const quizzes = [
-      { q: 'NEET: मानवी हृदय किती कप्पे असते?', a: 'चार' },
-      { q: 'JEE: गुरुत्वाकर्षण सूत्र?', a: 'F = G(m1 m2)/r²' },
-      { q: 'आरोग्य: विटामिन C चा स्रोत?', a: 'संत्र' }
-    ];
-    const dailyQuiz = quizzes[Math.floor(Math.random() * quizzes.length)];
-
     async function askAI() {
       const input = document.getElementById('userInput').value.trim();
-      if (!input) return;
       const responseEl = document.getElementById('response');
+      if (!input) return;
       responseEl.innerHTML = '<i class="fas fa-spinner fa-spin"></i> AI विचार करत आहे...';
-      
-      let reply;
-      if (input.includes('रेझ्युमे') || input.includes('resume')) {
-        reply = `तुमचे मराठी रेझ्युमे तयार! नाव: ${input.split(' ')[0] || 'राहुल'}, शिक्षण: बी.कॉम. PDF डाउनलोड: <a href="#" onclick="downloadResume()">डाउनलोड</a>`;
-      } else if (input.includes('क्विझ') || input.includes('quiz')) {
-        reply = `${dailyQuiz.q} उत्तर: ${dailyQuiz.a}`;
-      } else if (input.includes('आरोग्य') || input.includes('health')) {
-        reply = 'डोकेदुखीसाठी: पाणी प्या, विश्रांती घ्या. गंभीर असल्यास डॉक्टर भेटा.';
-      } else {
-        try {
-          const res = await fetch('https://dhruva-api.bhashini.gov.in/v1/translate', {
-            method: 'POST',
-            headers: { 
-              'Authorization': `Bearer ${BHASHINI_KEY}`,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              source: input,
-              target_language: 'mr',
-              source_language: 'en'
-            })
-          });
-          const data = await res.json();
-          reply = data.translatedText || 'समजले नाही, इंग्रजीत सांगा.';
-        } catch (e) {
-          reply = 'नेटवर्क चेक करा. उदाहरण: "NEET tips"';
-        }
+
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: input })
+        });
+        const data = await res.json();
+        responseEl.textContent = data.reply || 'उत्तर मिळालं नाही.';
+        speak(data.reply || 'उत्तर मिळालं नाही.');
+      } catch (e) {
+        console.error(e);
+        responseEl.textContent = 'AI सर्व्हरशी संपर्क होत नाही 🛠️';
       }
-      responseEl.innerHTML = reply;
-      speak(reply);
     }
 
+    // Voice input
+    const voiceBtn = document.getElementById('voiceBtn');
+    if ('webkitSpeechRecognition' in window) {
+      const recog = new webkitSpeechRecognition();
+      recog.lang = 'mr-IN';
+      recog.onresult = (e) => {
+        document.getElementById('userInput').value = e.results[0][0].transcript;
+        askAI();
+      };
+      voiceBtn.onclick = () => recog.start();
+    } else {
+      voiceBtn.disabled = true;
+      voiceBtn.title = 'Speech recognition not supported';
+    }
+
+    // Text to speech
     function speak(text) {
-      const utter = new SpeechSynthesisUtterance(text.replace(/<[^>]*>/g, ''));
+      const utter = new SpeechSynthesisUtterance(text);
       utter.lang = 'mr-IN';
       utter.rate = 0.9;
       speechSynthesis.speak(utter);
     }
 
-    function startVoice() {
-      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-      recognition.lang = 'mr-IN';
-      recognition.onresult = (e) => {
-        document.getElementById('userInput').value = e.results[0][0].transcript;
-        askAI();
-      };
-      recognition.start();
-    }
-
-    function downloadResume() {
-      const link = document.createElement('a');
-      link.href = 'data:text/plain;charset=utf-8,मराठी रेझ्युमे फाइल';
-      link.download = 'resume_marathi.txt';
-      link.click();
-    }
-
-    document.getElementById('userInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') askAI(); });
+    document.getElementById('askBtn').onclick = askAI;
+    document.getElementById('userInput').addEventListener('keypress', e => {
+      if (e.key === 'Enter') askAI();
+    });
     window.addEventListener('load', () => document.body.style.opacity = '1');
   </script>
 </body>
