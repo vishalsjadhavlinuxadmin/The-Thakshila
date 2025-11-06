@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="टक्षशिला: मराठी AI दोस्त - मोफत भाषा, शिक्षण, आरोग्य आणि नोकरी मदत. AI ने बोलून उत्तर मिळवा!">
+  <title>टक्षशिला - मराठी AI क्रांती</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root { --primary: #1e3a8a; --accent: #f59e0b; --bg: #f8fafc; --white: #ffffff; --text: #1e293b; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans Devanagari', sans-serif; background: linear-gradient(135deg, var(--bg) 0%, #e2e8f0 100%); color: var(--text); line-height: 1.6; }
+    header { background: var(--white); padding: 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 100; }
+    nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); } .logo i { color: var(--accent); margin-right: 0.5rem; }
+    .hero { background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%); color: var(--white); text-align: center; padding: 120px 2rem 80px; }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; animation: fadeInUp 1s ease; }
+    .hero p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
+    .cta { background: var(--accent); color: var(--white); padding: 1rem 2rem; border: none; border-radius: 50px; font-size: 1.1rem; cursor: pointer; transition: transform 0.3s; }
+    .cta:hover { transform: scale(1.05); }
+    main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    .chat-section { background: var(--white); border-radius: 20px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); animation: slideIn 0.8s ease; }
+    .chat-section h2 { text-align: center; margin-bottom: 1.5rem; color: var(--primary); }
+    .input-group { display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; justify-content: center; }
+    input { flex: 1; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem; min-width: 250px; }
+    button { padding: 1rem 1.5rem; background: var(--primary); color: var(--white); border: none; border-radius: 10px; cursor: pointer; transition: background 0.3s; display: flex; align-items: center; gap: 0.5rem; }
+    button:hover { background: #1e40af; }
+    button.mic { background: var(--accent); }
+    #response { background: #f1f5f9; padding: 1.5rem; border-radius: 10px; margin-top: 1rem; min-height: 60px; border-left: 4px solid var(--accent); font-weight: 500; }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 3rem 0; }
+    .feature-card { background: var(--white); padding: 1.5rem; border-radius: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s; }
+    .feature-card:hover { transform: translateY(-5px); }
+    .feature-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
+    footer { background: var(--primary); color: var(--white); text-align: center; padding: 2rem; margin-top: 3rem; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+    @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .input-group { flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo"><i class="fas fa-graduation-cap"></i> टक्षशिला</div>
+      <div>मराठी AI</div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>टक्षशिला: मराठी AI दोस्त</h1>
+    <p>तुमची भाषा, तुमचे AI — मोफत शिक्षण, आरोग्य, नोकरी आणि कथा. बोलून विचारा, AI उत्तर देईल!</p>
+    <button class="cta" onclick="document.querySelector('.chat-section').scrollIntoView({behavior: 'smooth'})">
+      <i class="fas fa-rocket"></i> सुरू करा
+    </button>
+  </section>
+
+  <main>
+    <section class="chat-section">
+      <h2><i class="fas fa-comments"></i> AI सोबत बोलूया</h2>
+      <div class="input-group">
+        <input id="userInput" type="text" placeholder="काही विचारा... (उदा: NEET टिप्स किंवा डोकेदुखी उपाय)">
+        <button onclick="askAI()"><i class="fas fa-paper-plane"></i> पाठवा</button>
+        <button class="mic" onclick="startVoice()"><i class="fas fa-microphone"></i> बोलून सांगा</button>
+      </div>
+      <div id="response">नमस्कार! काय मदत हवी? (AI तयार आहे...)</div>
+    </section>
+
+    <section class="features">
+      <div class="feature-card">
+        <i class="fas fa-file-alt"></i>
+        <h3>रेझ्युमे जनरेटर</h3>
+        <p>तपशील सांगा → AI मराठी रेझ्युमे तयार करेल.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-question-circle"></i>
+        <h3>दैनिक क्विझ</h3>
+        <p>NEET/JEE सारखे प्रश्न ऑटो-जनरेट होतात.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-heartbeat"></i>
+        <h3>आरोग्य सल्ला</h3>
+        <p>लक्षणे सांगा → मराठीत उपाय आणि डॉक्टर कधी भेटावे.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-book"></i>
+        <h3>कथा/कविता</h3>
+        <p>लावणी किंवा बालकथा AI ने तयार करा.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 टक्षशिला. सर्व हक्क राखीव. | <a href="mailto:info@takshila.com" style="color: #fbbf24;">संपर्क: info@takshila.com</a> | <i class="fab fa-whatsapp"></i> 9876543210</p>
+  </footer>
+
+  <script>
+    const BHASHINI_KEY = 'YOUR_BHASHINI_KEY'; // Replace after registration
+
+    const quizzes = [
+      { q: 'NEET: मानवी हृदय किती कप्पे असते?', a: 'चार' },
+      { q: 'JEE: गुरुत्वाकर्षण सूत्र?', a: 'F = G(m1 m2)/r²' },
+      { q: 'आरोग्य: विटामिन C चा स्रोत?', a: 'संत्र' }
+    ];
+    const dailyQuiz = quizzes[Math.floor(Math.random() * quizzes.length)];
+
+    async function askAI() {
+      const input = document.getElementById('userInput').value.trim();
+      if (!input) return;
+      const responseEl = document.getElementById('response');
+      responseEl.innerHTML = '<i class="fas fa-spinner fa-spin"></i> AI विचार करत आहे...';
+      
+      let reply;
+      if (input.includes('रेझ्युमे') || input.includes('resume')) {
+        reply = `तुमचे मराठी रेझ्युमे तयार! नाव: ${input.split(' ')[0] || 'राहुल'}, शिक्षण: बी.कॉम. PDF डाउनलोड: <a href="#" onclick="downloadResume()">डाउनलोड</a>`;
+      } else if (input.includes('क्विझ') || input.includes('quiz')) {
+        reply = `${dailyQuiz.q} उत्तर: ${dailyQuiz.a}`;
+      } else if (input.includes('आरोग्य') || input.includes('health')) {
+        reply = 'डोकेदुखीसाठी: पाणी प्या, विश्रांती घ्या. गंभीर असल्यास डॉक्टर भेटा.';
+      } else {
+        try {
+          const res = await fetch('https://dhruva-api.bhashini.gov.in/v1/translate', {
+            method: 'POST',
+            headers: { 
+              'Authorization': `Bearer ${BHASHINI_KEY}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              source: input,
+              target_language: 'mr',
+              source_language: 'en'
+            })
+          });
+          const data = await res.json();
+          reply = data.translatedText || 'समजले नाही, इंग्रजीत सांगा.';
+        } catch (e) {
+          reply = 'नेटवर्क चेक करा. उदाहरण: "NEET tips"';
+        }
+      }
+      responseEl.innerHTML = reply;
+      speak(reply);
+    }
+
+    function speak(text) {
+      const utter = new SpeechSynthesisUtterance(text.replace(/<[^>]*>/g, ''));
+      utter.lang = 'mr-IN';
+      utter.rate = 0.9;
+      speechSynthesis.speak(utter);
+    }
+
+    function startVoice() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'mr-IN';
+      recognition.onresult = (e) => {
+        document.getElementById('userInput').value = e.results[0][0].transcript;
+        askAI();
+      };
+      recognition.start();
+    }
+
+    function downloadResume() {
+      const link = document.createElement('a');
+      link.href = 'data:text/plain;charset=utf-8,मराठी रेझ्युमे फाइल';
+      link.download = 'resume_marathi.txt';
+      link.click();
+    }
+
+    document.getElementById('userInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') askAI(); });
+    window.addEventListener('load', () => document.body.style.opacity = '1');
+  </script>
+</body>
+</html>
