@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await fetch(
-      "https://api-inference.huggingface.co/models/ai4bharat/indic-gpt",
+      "https://router.huggingface.co/hf-inference/models/ai4bharat/indic-gpt",
       {
         method: "POST",
         headers: {
