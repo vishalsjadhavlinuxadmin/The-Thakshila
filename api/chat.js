@@ -9,9 +9,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Updated Hugging Face endpoint (new router)
-    const response = await fetch(
-      "https://router.huggingface.co/hf-inference/models/ai4bharat/indic-gpt",
+    // Step 1: translate non-Marathi text → Marathi (optional)
+    const transRes = await fetch(
+      "https://router.huggingface.co/hf-inference/models/ai4bharat/IndicTrans2-en-mr",
       {
         method: "POST",
         headers: {
@@ -19,12 +19,33 @@ export default async function handler(req, res) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          inputs: `मराठीत उत्तर द्या: ${text}`,
+          inputs: text,
+          options: { wait_for_model: true },
+        }),
+      }
+    );
+
+    const transData = await transRes.json();
+    const marathiInput =
+      transData?.[0]?.translation_text ||
+      transData?.translation_text ||
+      text;
+
+    // Step 2: generate Marathi text using GPT2
+    const response = await fetch(
+      "https://router.huggingface.co/hf-inference/models/gpt2-medium",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.HF_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          inputs: `मराठीत उत्तर द्या: ${marathiInput}`,
           parameters: {
-            max_new_tokens: 120,
+            max_new_tokens: 150,
             temperature: 0.9,
-            top_p: 0.95,
-            repetition_penalty: 1.05,
+            top_p: 0.9,
           },
           options: { wait_for_model: true },
         }),
@@ -33,11 +54,9 @@ export default async function handler(req, res) {
 
     const result = await response.json();
 
-    // Extract text safely
     const output =
       result?.[0]?.generated_text ||
       result?.generated_text ||
-      result?.message ||
       "AI ने उत्तर दिलं नाही.";
 
     res.status(200).json({ reply: output.trim() });
