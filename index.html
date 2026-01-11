@@ -1,148 +1,137 @@
 <!DOCTYPE html>
-<html lang="mr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="टक्षशिला: मराठी AI दोस्त - मोफत भाषा, शिक्षण, आरोग्य आणि नोकरी मदत. AI ने बोलून उत्तर मिळवा!">
-  <title>टक्षशिला - मराठी AI क्रांती</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <style>
-    :root { --primary: #1e3a8a; --accent: #f59e0b; --bg: #f8fafc; --white: #ffffff; --text: #1e293b; }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Noto Sans Devanagari', sans-serif; background: linear-gradient(135deg, var(--bg) 0%, #e2e8f0 100%); color: var(--text); line-height: 1.6; transition: opacity .4s; opacity:0; }
-    header { background: var(--white); padding: 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 100; }
-    nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
-    .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); } .logo i { color: var(--accent); margin-right: 0.5rem; }
-    .hero { background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%); color: var(--white); text-align: center; padding: 120px 2rem 80px; }
-    .hero h1 { font-size: 3rem; margin-bottom: 1rem; animation: fadeInUp 1s ease; }
-    .hero p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
-    .cta { background: var(--accent); color: var(--white); padding: 1rem 2rem; border: none; border-radius: 50px; font-size: 1.1rem; cursor: pointer; transition: transform 0.3s; }
-    .cta:hover { transform: scale(1.05); }
-    main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-    .chat-section { background: var(--white); border-radius: 20px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); animation: slideIn 0.8s ease; }
-    .chat-section h2 { text-align: center; margin-bottom: 1.5rem; color: var(--primary); }
-    .input-group { display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; justify-content: center; }
-    input { flex: 1; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem; min-width: 250px; }
-    button { padding: 1rem 1.5rem; background: var(--primary); color: var(--white); border: none; border-radius: 10px; cursor: pointer; transition: background 0.3s; display: flex; align-items: center; gap: 0.5rem; }
-    button:hover { background: #1e40af; }
-    button.mic { background: var(--accent); }
-    #response { background: #f1f5f9; padding: 1.5rem; border-radius: 10px; margin-top: 1rem; min-height: 60px; border-left: 4px solid var(--accent); font-weight: 500; }
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 3rem 0; }
-    .feature-card { background: var(--white); padding: 1.5rem; border-radius: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s; }
-    .feature-card:hover { transform: translateY(-5px); }
-    .feature-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
-    footer { background: var(--primary); color: var(--white); text-align: center; padding: 2rem; margin-top: 3rem; }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
-    @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .input-group { flex-direction: column; } }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinExpert & Co. | Professional CA Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px); }
+    </style>
 </head>
-<body>
-  <header>
-    <nav>
-      <div class="logo"><i class="fas fa-graduation-cap"></i> टक्षशिला</div>
-      <div>मराठी AI</div>
+<body class="bg-slate-50 text-gray-800">
+
+    <nav class="glass-nav shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0">
+                    <span class="text-2xl font-bold text-blue-900">FIN<span class="text-blue-600">EXPERT</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 font-medium">
+                    <a href="#home" class="hover:text-blue-600">Home</a>
+                    <a href="#calculator" class="text-blue-600 font-bold underline underline-offset-8">Tax Calculator</a>
+                    <a href="#contact" class="bg-blue-900 text-white px-5 py-2 rounded-md">Consult Now</a>
+                </div>
+                <button onclick="toggleMenu()" class="md:hidden text-2xl"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 space-y-4 shadow-lg">
+            <a href="#home" class="block">Home</a>
+            <a href="#calculator" class="block text-blue-600">Tax Calculator</a>
+            <a href="#contact" class="block">Contact</a>
+        </div>
     </nav>
-  </header>
 
-  <section class="hero">
-    <h1>टक्षशिला: मराठी AI दोस्त</h1>
-    <p>तुमची भाषा, तुमचे AI — मोफत शिक्षण, आरोग्य, नोकरी आणि कथा. बोलून विचारा, AI उत्तर देईल!</p>
-    <button class="cta" onclick="document.querySelector('.chat-section').scrollIntoView({behavior: 'smooth'})">
-      <i class="fas fa-rocket"></i> सुरू करा
-    </button>
-  </section>
-
-  <main>
-    <section class="chat-section">
-      <h2><i class="fas fa-comments"></i> AI सोबत बोलूया</h2>
-      <div class="input-group">
-        <input id="userInput" type="text" placeholder="काही विचारा... (उदा: NEET टिप्स किंवा डोकेदुखी उपाय)">
-        <button id="askBtn"><i class="fas fa-paper-plane"></i> पाठवा</button>
-        <button class="mic" id="voiceBtn"><i class="fas fa-microphone"></i> बोलून सांगा</button>
-      </div>
-      <div id="response">नमस्कार! काय मदत हवी? (AI तयार आहे...)</div>
+    <section id="home" class="bg-blue-900 py-16 text-white text-center">
+        <h1 class="text-4xl font-extrabold mb-4">India Tax Planning FY 2025-26</h1>
+        <p class="text-blue-100 max-w-xl mx-auto px-4">Professional auditing and taxation services for businesses. Use our updated calculator below to estimate your liability under the New Regime.</p>
     </section>
 
-    <section class="features">
-      <div class="feature-card">
-        <i class="fas fa-file-alt"></i>
-        <h3>रेझ्युमे जनरेटर</h3>
-        <p>तपशील सांगा → AI मराठी रेझ्युमे तयार करेल.</p>
-      </div>
-      <div class="feature-card">
-        <i class="fas fa-question-circle"></i>
-        <h3>दैनिक क्विझ</h3>
-        <p>NEET/JEE सारखे प्रश्न ऑटो-जनरेट होतात.</p>
-      </div>
-      <div class="feature-card">
-        <i class="fas fa-heartbeat"></i>
-        <h3>आरोग्य सल्ला</h3>
-        <p>लक्षणे सांगा → मराठीत उपाय आणि डॉक्टर कधी भेटावे.</p>
-      </div>
-      <div class="feature-card">
-        <i class="fas fa-book"></i>
-        <h3>कथा/कविता</h3>
-        <p>लावणी किंवा बालकथा AI ने तयार करा.</p>
-      </div>
+    <section id="calculator" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-blue-900">New Regime Tax Calculator</h2>
+                <p class="text-gray-500 mt-2 italic text-sm">Updated as per latest Union Budget 2024/25 guidelines</p>
+            </div>
+
+            <div class="bg-slate-50 p-6 md:p-10 rounded-2xl border border-gray-200 shadow-xl">
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Annual Gross Salary (₹)</label>
+                            <input type="number" id="incomeInput" placeholder="e.g. 1000000" class="w-full p-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none text-xl">
+                        </div>
+                        <button onclick="calculateTax()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-calculator"></i> Calculate Tax
+                        </button>
+                    </div>
+
+                    <div class="bg-blue-900 text-white p-8 rounded-2xl flex flex-col justify-center shadow-lg">
+                        <h3 class="text-sm uppercase tracking-widest opacity-70 font-bold">Total Payable Tax</h3>
+                        <div class="text-5xl font-black mt-2 mb-2 text-blue-400" id="taxDisplay">₹ 0</div>
+                        <p class="text-xs opacity-60">*Includes 4% Health & Education Cess</p>
+                        <div id="breakdownText" class="mt-4 pt-4 border-t border-blue-800 text-sm text-blue-200">
+                            Enter income to see breakdown.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <footer>
-    <p>&copy; 2025 टक्षशिला. सर्व हक्क राखीव. | <a href="mailto:info@takshila.com" style="color: #fbbf24;">संपर्क: info@takshila.com</a></p>
-  </footer>
+    <footer class="bg-slate-900 text-gray-500 py-10 text-center text-sm">
+        &copy; 2026 FinExpert & Co. | Chartered Accountants | Maharashtra, India
+    </footer>
 
-  <script>
-    async function askAI() {
-      const input = document.getElementById('userInput').value.trim();
-      const responseEl = document.getElementById('response');
-      if (!input) return;
-      responseEl.innerHTML = '<i class="fas fa-spinner fa-spin"></i> AI विचार करत आहे...';
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
 
-      try {
-        const res = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ text: input })
-        });
-        const data = await res.json();
-        responseEl.textContent = data.reply || 'उत्तर मिळालं नाही.';
-        speak(data.reply || 'उत्तर मिळालं नाही.');
-      } catch (e) {
-        console.error(e);
-        responseEl.textContent = 'AI सर्व्हरशी संपर्क होत नाही 🛠️';
-      }
-    }
+        function calculateTax() {
+            const income = parseFloat(document.getElementById('incomeInput').value);
+            const display = document.getElementById('taxDisplay');
+            const breakdown = document.getElementById('breakdownText');
 
-    // Voice input
-    const voiceBtn = document.getElementById('voiceBtn');
-    if ('webkitSpeechRecognition' in window) {
-      const recog = new webkitSpeechRecognition();
-      recog.lang = 'mr-IN';
-      recog.onresult = (e) => {
-        document.getElementById('userInput').value = e.results[0][0].transcript;
-        askAI();
-      };
-      voiceBtn.onclick = () => recog.start();
-    } else {
-      voiceBtn.disabled = true;
-      voiceBtn.title = 'Speech recognition not supported';
-    }
+            if (isNaN(income) || income <= 0) {
+                alert("Please enter a valid positive number.");
+                return;
+            }
 
-    // Text to speech
-    function speak(text) {
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = 'mr-IN';
-      utter.rate = 0.9;
-      speechSynthesis.speak(utter);
-    }
+            // 1. Standard Deduction (Fixed at 75k for New Regime)
+            const standardDeduction = 75000;
+            let taxableIncome = Math.max(0, income - standardDeduction);
+            
+            let tax = 0;
 
-    document.getElementById('askBtn').onclick = askAI;
-    document.getElementById('userInput').addEventListener('keypress', e => {
-      if (e.key === 'Enter') askAI();
-    });
-    window.addEventListener('load', () => document.body.style.opacity = '1');
-  </script>
+            // 2. New Tax Regime Slabs (FY 2025-26)
+            // 0 - 3L: Nil | 3-7L: 5% | 7-10L: 10% | 10-12L: 15% | 12-15L: 20% | Above 15L: 30%
+            if (taxableIncome > 300000) {
+                tax += Math.min(400000, taxableIncome - 300000) * 0.05; // 3L to 7L
+            }
+            if (taxableIncome > 700000) {
+                tax += Math.min(300000, taxableIncome - 700000) * 0.10; // 7L to 10L
+            }
+            if (taxableIncome > 1000000) {
+                tax += Math.min(200000, taxableIncome - 1000000) * 0.15; // 10L to 12L
+            }
+            if (taxableIncome > 1200000) {
+                tax += Math.min(300000, taxableIncome - 1200000) * 0.20; // 12L to 15L
+            }
+            if (taxableIncome > 1500000) {
+                tax += (taxableIncome - 1500000) * 0.30; // Above 15L
+            }
+
+            // 3. Rebate u/s 87A
+            // If taxable income <= 7,00,000, full tax rebate is applied.
+            if (taxableIncome <= 700000) {
+                tax = 0;
+            }
+
+            // 4. Cess (4% of Tax)
+            let cess = tax * 0.04;
+            let totalTax = tax + cess;
+
+            // 5. Update UI
+            display.innerText = "₹ " + Math.round(totalTax).toLocaleString('en-IN');
+            breakdown.innerHTML = `
+                Standard Deduction: ₹${standardDeduction.toLocaleString('en-IN')}<br>
+                Taxable Income: ₹${Math.round(taxableIncome).toLocaleString('en-IN')}<br>
+                Cess (4%): ₹${Math.round(cess).toLocaleString('en-IN')}
+            `;
+        }
+    </script>
 </body>
 </html>
